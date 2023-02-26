@@ -25,11 +25,12 @@ glimpse(age_gaps) # view data
   labs(x="Release Year", #axis labels 
        y = "Age Difference" # axis labels 
        ) + 
-    theme_bw() +  
+    theme_bw() + # type of theme 
     theme(axis.title = element_text(size = 20,
-                                    color="blue"))
-ggsave(here("TidyTuesday 1","Output", "Hollywood Age Data.png"),
+                                    color="blue")) # change the axis titles 
+ggsave(here("TidyTuesday 1","Output", "Hollywood Age Data.png"), #saved my work 
        width = 7, height = 5)
+
   
 
 
