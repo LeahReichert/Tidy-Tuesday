@@ -17,19 +17,19 @@ View(bob_ross) # view data
 
 bob_ross%>%
   filter(season == "17")%>% #look at only sason 17 
-  ggplot(aes(x = painting_title, y = painting_index,
-             group = season == "17",
-             color = episode))+
-  geom_point()+
+  ggplot(aes(x = painting_title, y = painting_index, # what data categories im using to plot 
+             group = season == "17", # only look at season 17 
+             color = episode))+ # color by episode 
+  geom_point()+ # type of graph 
   geom_smooth()+
-  labs(x = "Painting Title",
+  labs(x = "Painting Title", # axis titles 
        y = "Painting Index"
        )+
-  theme_fivethirtyeight()+
+  theme_fivethirtyeight()+ # theme 
   theme(axis.title = element_text(size = 15,
-                                  color = "purple"),
-                                  panel.background = element_rect(fill = "gray"))+
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
-ggsave(here("TidyTuesday 2","Output","TidyTuesday 2.png"),
+                                  color = "purple"), # change axis title 
+                                  panel.background = element_rect(fill = "gray"))+ # chnage background 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) # make x axis text vertical 
+ggsave(here("TidyTuesday 2","Output","TidyTuesday 2.png"), 
        width = 7, height = 5)
   
