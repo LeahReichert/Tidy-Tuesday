@@ -1,0 +1,48 @@
+---
+title: "TidyTuesday 6"
+author: "Leah"
+date: "2023-04-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.path = "../output/")
+```
+
+# Load libraries 
+```{r}
+library(here)
+library(tidyverse)
+library(ggplot2)
+library(gganimate)
+```
+
+# Introduction 
+Today I will be practicing with animation. 
+
+# Load data 
+```{r}
+soccer21_22 <- read_csv(here("TidyTuesday 6", "Data", "soccer21-22.csv"))
+View(soccer21_22)
+```
+# Plot Data: practice with animation  
+```{r Home Team: FTHG vs. FTAG}
+soccer21_22 %>%
+  ggplot(aes(x = FTHG,
+             y = FTAG,
+         color = HomeTeam)) +
+  geom_point() +
+  transition_states(
+    HomeTeam, # what I'm animating by 
+    transition_length = 4, # length of transition 
+    state_length = 2 # the length of the pause in between
+  ) +
+  labs(x = "FTHG",
+       y = "FTAG",
+       title = "Home Team: FTHG vs. FTAG") +
+  theme_bw() +
+  theme(panel.background = element_rect(fill = "gray97" ))+
+  theme(plot.background = element_rect(fill = "lavender"))
+```
+
