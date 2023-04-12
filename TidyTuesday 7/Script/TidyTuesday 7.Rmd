@@ -1,0 +1,55 @@
+---
+title: "TidyTuesday 7"
+author: "Leah"
+date: "2023-04-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.path = "../output/")
+```
+
+# Introduction #
+Today I will be practicing using the magick package.
+
+# Load Libraries 
+```{r}
+library(here)
+library(tidyverse)
+library(ggplot2)
+library(magick)
+library(grid)
+```
+# Load Data 
+```{r}
+egg_production <- read_csv(here("TidyTuesday 7", "Data","egg-production.csv"))
+View(egg_production)
+```
+
+# Plot Data 
+```{r Number of Hens vs. Eggs, fig.height = 3, fig.width = 5}
+egg_production %>% # data used 
+  ggplot(aes(x = n_eggs,
+             y = n_hens,
+             color = prod_process)) +
+  geom_point() + #type of graph 
+  labs( x = "Number of Eggs", # axis titles 
+        y = "Number of Hens",
+        title = "Number of Eggs vs. Hens") +
+  theme_classic() + # theme 
+  theme(panel.background = element_rect(fill = "gray97" ))+ # chnage panel background
+  theme(plot.background = element_rect(fill = "yellow"))+ #change plot background
+  theme(axis.title.x = element_text(size = 15 )) + # axis title size 
+  theme(axis.title.y = element_text(size = 15))
+
+ggsave(here("TidyTuesday  7","Output","TidyTuesday 7.png"), 
+       width = 7, height = 5) # save plot before adding photo 
+
+Chick <- image_read('https://c8.alamy.com/comp/T0GB41/little-yellow-chicken-on-white-background-cartoon-chick-peeking-out-of-an-eggshell-T0GB41.jpg') %>% # save chick photo 
+  image_trim
+
+grid.raster(Chick, x = 0.35, y = 0.5, 
+            width = unit(80, "points")) # Add picture to graph and adjust the position of the photo 
+```
+
