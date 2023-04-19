@@ -1,0 +1,50 @@
+---
+title: "TidyTuesday 8"
+author: "Leah"
+date: "2023-04-18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.path = "../output/")
+```
+# Introduction 
+Today I will be working with the different themes that can be applied to a graph.
+1. Change axis line color 
+2. Change background color 
+3. Add a box around the legend 
+
+# Load Libraries 
+```{r}
+library(here)
+library(tidyverse)
+library(ggplot2)
+```
+
+# Load Data 
+```{r}
+founder_crops <- read_csv(here("TidyTuesday 8","Data","founder_crops.csv"))
+View(founder_crops)
+```
+# Create a Box plot
+```{r, Founder Crops: Start Age vs. End Age }
+founder_crops %>% # data used 
+  ggplot(aes(x = age_start,
+             y = age_end,
+             color = category)) +
+  geom_boxplot() + #type of graph 
+  labs( x = "Age Start", # axis titles 
+        y = "Age End",
+        title = "Founder Crops: Start Age vs. End Age") +
+  theme_linedraw()+ # theme 
+  theme(legend.box.background = element_rect(color = "lightblue", size = 2)) +# add box around legend 
+  theme(axis.line = element_line(size = 2, colour = "lightblue", linetype = 2)) + # change axis line color 
+  theme(panel.background = element_rect(fill = "seashell" ))+ # change panel background
+  theme(plot.background = element_rect(fill = "lavender")) # change plot background 
+
+```
+
+
+
+
